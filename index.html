@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>UCAR - Climate Sensitivity Calculator</title>
+<link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="src/css/style.css"/>
 </head>
 
@@ -12,7 +13,7 @@
         <div class="slidecontainer">
             <input type="range" min="180" max="800" value="280" class="slider" id="myRange">
         </div>
-    </div>
+    
 
     <div id="particle-system-container">
         <div id="thermometer-container">
@@ -42,13 +43,14 @@
         <select>
             <option>Year: 2010, CO2 = 390 ppmv, Temperature = 14.6&deg; C</option>
             <option>Year: 2000, CO2 = 370 ppmv, Temperature = 14.3&deg; C</option>
-            <option>Year: 1820, CO2 = 280 ppmv, Temperature = 13.7&deg; C</option>
+            <option selected>Year: 1820, CO2 = 280 ppmv, Temperature = 13.7&deg; C</option>
             <option>Ice age, CO2 = 182 ppmv, Temperature = 5&deg; C</option>
         </select>
 
-        <button>Credits</button>
+        <input id="credits-btn" type="button" value="Credits"/>
     </div>
-
+    
+    </div><!-- end container -->
 </body>
 
 </html>
