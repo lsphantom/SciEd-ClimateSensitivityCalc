@@ -1,0 +1,23 @@
+/* PRIMARY ELEMENTS */
+#main {
+    background-color: #99cccc;
+}
+#heading {
+    text-align: center;
+}
+
+/* SLIDER */
+.slidercontainer {
+    text-align: center;
+}
+.slidercontainer input {
+    float: none;
+    margin: 20px auto;
+}
+
+/* PARTICLE SYSTEM CONTAINER */
+#particle-system-container {
+    background-color: #99ccff;
+    min-width: 500px;
+    min-height: 300px;
+}
