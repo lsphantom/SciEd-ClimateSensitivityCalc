@@ -21,11 +21,16 @@
 
         <div id="floating-card" class="row">
             <div id="thermometer-container" class="col-sm">
-                <div id="thermometer">***</div>
+                <div class="thermometer">
+                    <div class="stem">
+                      <div class="stem-perct"></div>
+                    </div>
+                    <div class="bulb"></div>
+                </div>
             </div>
             <div class="col-sm">
                 <p id="calculated-temp-text">Average Global Temperature</p>
-                <p id="calculated-temp">0.0&deg; C</p>
+                <p id="calculated-temp"><span id="agt">13.7</span>&deg; C</p>
             </div>
             
         </div>
@@ -54,13 +59,28 @@
             <option>Year: 2000, CO2 = 370 ppmv, Temperature = 14.3&deg; C</option>
             <option selected>Year: 1820, CO2 = 280 ppmv, Temperature = 13.7&deg; C</option>
             <option>Ice age, CO2 = 182 ppmv, Temperature = 5&deg; C</option>
-        </select> <input id="credits-btn" type="button" value="Credits"/>
+        </select> <input id="credits-btn" type="button" value="Credits" onclick="toggleCreditsModal('open')"/>
+    </div>
+
+    <div id="credits" class="credits-modal">
+        <img id="logo" src="src/ui/scied-logo.png" alt="UCAR - SciEd Logo" />
+        <p>This simulation was created at the <strong>UCAR Center for Science Education</strong></p>
+        <br><br>
+        <a href="http://scied.ucar.edu/climate-sensitivity-calculator">SciEd.UCAR.edu</a>
+        <br><br><br>
+        <p>Design, programming and pedagogy by <strong>Randy M. Russell</strong>.</p>
+        <p>&copy; 2012-2020 UCAR (University Corporation for Atmospheric Research)</p>
+        <br><br>
+        <input id="close-btn" type="button" value="Close" onclick="toggleCreditsModal('close')"/>
     </div>
     
     </div><!-- end container -->
 
+    
+
     <script src="src/js/particle/particles.js"></script>
     <script src="src/js/particle/app.js"></script>
+    <script src="src/js/main.js"></script>
 </body>
 
 </html>
