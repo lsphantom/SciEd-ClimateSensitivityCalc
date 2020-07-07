@@ -39,6 +39,9 @@ select, option {
     font-family: Arial, Helvetica, sans-serif;
     color: #0066cc;
 }
+.cs-radio {
+    margin-right: 15px;
+}
 #credits {
     position: absolute;
     background-color: #fff;
