@@ -75,6 +75,10 @@ $(document).ready(function(){
 //setup range selector
 //$('#agt').value(baseline).data('temp');
 
+    //Change sensitivity value
+    $('input[name=sensitivity]').on('change', function(e){
+       climateSensitivity = e.target.value;
+    });
 
 
 });
