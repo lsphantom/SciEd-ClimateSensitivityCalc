@@ -19,6 +19,7 @@ function toggleCreditsModal (action) {
 //JQUERY
 $(document).ready(function(){
     var climateSensitivity = $('input[name="sensitivity"]:checked').val();
+    var co2Concentration = $('#ppmv-range').val();
     var baselineTemp = 0;
     var b1 = [390, 14.6];
     var b2 = [370, 14.3];
@@ -30,22 +31,22 @@ $(document).ready(function(){
     function checkSelectedValues(){
        switch ($('#baseline').val()) {
         case 'b1':
-        climateSensitivity = b1[0];
+        co2Concentration = b1[0];
         baselineTemp = b1[1];
         break;
 
         case 'b2':
-        climateSensitivity = b2[0];
+        co2Concentration = b2[0];
         baselineTemp = b2[1];
         break;
 
         case 'b3':
-        climateSensitivity = b3[0];
+        co2Concentration = b3[0];
         baselineTemp = b3[1];
         break;
 
         case 'b4':
-        climateSensitivity = b4[0];
+        co2Concentration = b4[0];
         baselineTemp = b4[1];
         break;
 
@@ -58,7 +59,7 @@ $(document).ready(function(){
     //Set outputs to selected values
     function setValues() {
        checkSelectedValues();
-       $('#ppmv-range').val(climateSensitivity);
+       $('.range-slider-value').text(co2Concentration);
        $('#agt').text(baselineTemp); 
     }
 
@@ -66,9 +67,11 @@ $(document).ready(function(){
     
 
 
-    //Dropdown change
+    //Baseline Dropdown change
     $('#baseline').on('change', function(){
         setValues();
+        $('.range-slider-value').text(co2Concentration);
+        $('#ppmv-range').val(co2Concentration);
     });
 
 
@@ -80,5 +83,10 @@ $(document).ready(function(){
        climateSensitivity = e.target.value;
     });
 
+    //Set and update CO2 concentration
+    $('.range-slider-value').text(co2Concentration);
 
+    $('#ppmv-range').on('input', function(e){
+        $('.range-slider-value').text(e.target.value);
+    });
 });

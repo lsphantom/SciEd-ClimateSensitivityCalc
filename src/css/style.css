@@ -25,6 +25,16 @@
     margin: 20px auto;
 }
 
+.range-slider-value {
+    background-color: #222;
+    color: #fff;
+    padding: 6px 10px;
+    margin: 2px auto;
+    display: block;
+    width: 80px;
+    border-radius: 2px;
+}
+
 /* CONTROLS */
 #cs-controls {
     font-family: 'Times New Roman', Times, serif;
