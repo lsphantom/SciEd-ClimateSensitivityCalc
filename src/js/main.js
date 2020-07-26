@@ -72,21 +72,86 @@ $(document).ready(function(){
         setValues();
         $('.range-slider-value').text(co2Concentration);
         $('#ppmv-range').val(co2Concentration);
+        updateParticles(co2Concentration);
     });
 
 
-//setup range selector
-//$('#agt').value(baseline).data('temp');
+
+    //setup range selector
+    //$('#agt').value(baseline).data('temp');
 
     //Change sensitivity value
     $('input[name=sensitivity]').on('change', function(e){
-       climateSensitivity = e.target.value;
+        climateSensitivity = e.target.value;
+        currentConcentration = $('#ppmv-range').val();
+       calcNewTemp(climateSensitivity, currentConcentration);
     });
 
     //Set and update CO2 concentration
     $('.range-slider-value').text(co2Concentration);
 
     $('#ppmv-range').on('input', function(e){
-        $('.range-slider-value').text(e.target.value);
+        var rangeValue = e.target.value;
+        $('.range-slider-value').text(rangeValue);
+        calcNewTemp(climateSensitivity, rangeValue);
+        updateParticles(rangeValue);
     });
+
+
+
+    //Calculate new temperature
+    function calcNewTemp(cs, cc) {
+        //refactor
+        var initConcentration = co2Concentration;
+        var initTemperature = baselineTemp;
+        var setClimateSensitivity = cs;
+        var setCO2Concentration = cc;
+
+        //find multiplier value based on concentration value
+        var multiplierValue = setCO2Concentration / initConcentration;
+        
+        //find doubling rate based on concentration value
+        var doublingRate;
+        if (setCO2Concentration >= initConcentration) {
+            doublingRate = setClimateSensitivity / 2;
+        } else {
+            doublingRate = setClimateSensitivity;
+        }
+        
+
+        //find temperature difference
+        var tempDifference = doublingRate * multiplierValue;
+
+        //calculate new temp
+        var newCalculatedTemp;
+        if (tempDifference === doublingRate) {
+            newCalculatedTemp = initTemperature;
+        } else if (tempDifference > doublingRate){
+            newCalculatedTemp = initTemperature + tempDifference;
+        } else {
+            newCalculatedTemp = initTemperature - tempDifference;  
+        }
+         
+        //post calculated temp
+        $('#agt').text(newCalculatedTemp.toFixed(1));
+        //TODO: Fix thermometer variation -->
+        //adjust thermometer to a close estimate percentage height !!!NOT CELSIUS TO FARENHEIT!!!
+        var thermometerLevel = (newCalculatedTemp * 1.8) + 10; //Really rough estimate
+        $('.stem-perct').css('height', '' + thermometerLevel.toFixed(2) + '%');
+    }
+
+
+    //Update particle system
+    function updateParticles(ccValue) {
+        //ccValue range 180 - 800  : particles.number.value ~ 20 - 200
+        //calculate estimate particle value
+        var estimatedParticleValue = (ccValue / 4);
+        //console.log(estimatedParticleValue);
+        pJSDom[0].pJS.particles.number.value = estimatedParticleValue;
+        pJSDom[0].pJS.fn.particlesRefresh();
+
+    }
+
+    updateParticles(co2Concentration);
+
 });
