@@ -71,7 +71,7 @@ $(document).ready(function(){
     $('#baseline').on('change', function(){
         setValues();
         $('.range-slider-value').text(co2Concentration);
-        $('#ppmv-range').val(co2Concentration);
+        $('#ppmv-range').val(co2Concentration).attr('min', co2Concentration);
         updateParticles(co2Concentration);
     });
 
