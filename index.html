@@ -6,14 +6,19 @@
 <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="src/css/style.css"/>
 </head>
-
+<!--
+ADAPTATION FOR THIS INTERACTION DEVELOPED BY GARY PACHECO FROM
+UCAR - THE COMET PROGRAM 2020
+IN CONJUNCTION WITH
+UCAR - SCIED 2012-2020    
+-->
 <body>
     <div id="main" class="container">
         <h3 id="cdc-heading">Carbon Dioxide Concentration (ppmv)</h3>
 
         <div class="slidercontainer">
             <span class="range-slider-value">0</span>
-            <input id="ppmv-range" type="range" class="custom-range" min="280" max="800" step="10" value="280">
+            <input id="ppmv-range" type="range" class="custom-range" min="180" max="800" step="10" value="280">
         </div>
     
 
@@ -70,10 +75,10 @@
             <option data-year="2000" data-cc="370" data-temp="14.3" value="b2">Year: 2000, CO2 = 370 ppmv, Temperature = 14.3&deg; C</option>
             <option data-year="1820" data-cc="280" data-temp="13.7" value="b3" selected>Year: 1820, CO2 = 280 ppmv, Temperature = 13.7&deg; C</option>
             <option data-year="Ice Age" data-cc="182" data-temp="5" value="b4">Ice age, CO2 = 182 ppmv, Temperature = 5&deg; C</option>
-        </select> <input id="credits-btn" type="button" value="Credits" onclick="toggleCreditsModal('open')"/>
+        </select> <!--<input id="credits-btn" type="button" value="Credits" onclick="toggleCreditsModal('open')"/>-->
     </div>
 
-    <div id="credits" class="credits-modal">
+    <!--<div id="credits" class="credits-modal">
         <img id="logo" src="src/ui/scied-logo.png" alt="UCAR - SciEd Logo" />
         <p>This simulation was created at the <strong>UCAR Center for Science Education</strong></p>
         <br><br>
@@ -83,7 +88,7 @@
         <p>&copy; 2012-2020 UCAR (University Corporation for Atmospheric Research)</p>
         <br><br>
         <input id="close-btn" type="button" value="Close" onclick="toggleCreditsModal('close')"/>
-    </div>
+    </div>-->
     
     </div><!-- end container -->
 

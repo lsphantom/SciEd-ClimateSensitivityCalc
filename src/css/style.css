@@ -72,6 +72,9 @@ select, option {
 #particle-system-container {
     position: relative;
     background-color: #99ccff;
+    background-image: url("../ui/clouds.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     min-width: 400px;
     min-height: 200px;
 }

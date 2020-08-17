@@ -71,8 +71,9 @@ $(document).ready(function(){
     $('#baseline').on('change', function(){
         setValues();
         $('.range-slider-value').text(co2Concentration);
-        $('#ppmv-range').val(co2Concentration).attr('min', co2Concentration);
+        $('#ppmv-range').val(co2Concentration);
         updateParticles(co2Concentration);
+        updateThermometer();
     });
 
 
@@ -111,32 +112,35 @@ $(document).ready(function(){
         var multiplierValue = setCO2Concentration / initConcentration;
         
         //find doubling rate based on concentration value
-        var doublingRate;
+        /*var doublingRate;
         if (setCO2Concentration >= initConcentration) {
             doublingRate = setClimateSensitivity / 2;
         } else {
             doublingRate = setClimateSensitivity;
         }
         
-
         //find temperature difference
-        var tempDifference = doublingRate * multiplierValue;
+        var tempDifference = doublingRate * multiplierValue;*/
 
         //calculate new temp
         var newCalculatedTemp;
-        if (tempDifference === doublingRate) {
+       /* if (tempDifference === doublingRate) {
             newCalculatedTemp = initTemperature;
         } else if (tempDifference > doublingRate){
             newCalculatedTemp = initTemperature + tempDifference;
         } else {
             newCalculatedTemp = initTemperature - tempDifference;  
-        }
+        }*/
+
+        newCalculatedTemp = initTemperature + setClimateSensitivity * (Math.log(setCO2Concentration/initConcentration)/Math.log(2));
+        // log 2 (C/C0) = ln(C/C0) / ln(2)
+        
          
         //post calculated temp
         $('#agt').text(newCalculatedTemp.toFixed(1));
-        //TODO: Fix thermometer variation -->
-        //adjust thermometer to a close estimate percentage height !!!NOT CELSIUS TO FARENHEIT!!!
-        var thermometerLevel = (newCalculatedTemp * 1.8) + 10; //Really rough estimate
+        // THERMOMETER RANGE: 0 - 23deg
+        //adjust thermometer to a close estimate percentage height
+        var thermometerLevel = (newCalculatedTemp / 23) * 100;
         $('.stem-perct').css('height', '' + thermometerLevel.toFixed(2) + '%');
     }
 
@@ -152,6 +156,13 @@ $(document).ready(function(){
 
     }
 
+    //Update thermometer (Independent Function)
+    function updateThermometer(){
+        var adjustedHeight = (baselineTemp/23)*100;
+        $('.stem-perct').css('height', '' + adjustedHeight.toFixed(2) + '%');
+    }
+
     updateParticles(co2Concentration);
 
+    
 });
