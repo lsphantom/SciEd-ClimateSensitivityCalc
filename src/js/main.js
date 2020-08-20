@@ -54,10 +54,19 @@ $(document).ready(function(){
         break;
         } 
     }
+
+    //Add fixed baseline setup
+    function checkFixedValues(){
+        co2Concentration = $('#fixedbaseline').data('cc');
+        baselineTemp = $('#fixedbaseline').data('temp');
+
+        console.log(co2Concentration, baselineTemp);
+    }
     
 
     //Set outputs to selected values
     function setValues() {
+       checkFixedValues();
        checkSelectedValues();
        $('.range-slider-value').text(co2Concentration);
        $('#agt').text(baselineTemp); 

@@ -151,3 +151,12 @@ select, option {
    bottom: 13px;
    z-index: 12;
 }
+
+/*fixed baseline*/
+#fixedbaseline {
+    background-color: #222;
+    color: #fff;
+    border-radius: 2px;
+    font-family: sans-serif;
+    padding: 2px 6px;
+}
