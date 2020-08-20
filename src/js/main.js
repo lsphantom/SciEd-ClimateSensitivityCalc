@@ -59,8 +59,6 @@ $(document).ready(function(){
     function checkFixedValues(){
         co2Concentration = $('#fixedbaseline').data('cc');
         baselineTemp = $('#fixedbaseline').data('temp');
-
-        console.log(co2Concentration, baselineTemp);
     }
     
 
@@ -72,7 +70,7 @@ $(document).ready(function(){
        $('#agt').text(baselineTemp); 
     }
 
-    setValues();
+    //setValues();
     
 
 
@@ -174,4 +172,9 @@ $(document).ready(function(){
     updateParticles(co2Concentration);
 
     
+    //On window load
+    setValues();
+    updateThermometer();
+    calcNewTemp(climateSensitivity, $('#ppmv-range').val());
+
 });

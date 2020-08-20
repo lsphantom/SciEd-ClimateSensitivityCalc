@@ -134,7 +134,7 @@ select, option {
      padding-bottom: 3px;
 }
 .stem-perct{
-   height: 50%;
+   height: 63.5%; /* ~14.6deg */
    width: 8px;
    background: #cc0000;
    display: block;
