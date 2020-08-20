@@ -167,6 +167,7 @@ $(document).ready(function(){
     function updateThermometer(){
         var adjustedHeight = (baselineTemp/23)*100;
         $('.stem-perct').css('height', '' + adjustedHeight.toFixed(2) + '%');
+        $('.range-slider-value').text($('#ppmv-range').val()); //Update co2 display value while youre at it...
     }
 
     updateParticles(co2Concentration);
